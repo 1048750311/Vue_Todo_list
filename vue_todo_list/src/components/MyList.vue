@@ -1,9 +1,6 @@
 <template>
   <ul class="todo-main">
-    <MyItem/>
-    <MyItem/>
-    <MyItem/>
-    <MyItem/>
+    <MyItem v-for="todoobj in todos" :key="todoobj.id" :todo="todoobj"/>
   </ul>
 </template>
 <script>
@@ -11,6 +8,15 @@ import MyItem from "./MyItem";
 export default {
   name: "MyList",
   components:{MyItem},
+  data() {
+    return {
+      todos:[
+        {id:'001', title:'堡垒之夜', done:true},
+        {id:'002', title:'英雄联盟', done:false},
+        {id:'003', title:'星际争霸2', done:true},
+      ]
+    }
+  },
 };
 </script>
 <style lang="css" scoped>
