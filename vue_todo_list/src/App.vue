@@ -3,8 +3,8 @@
   <div id="root">
     <div class="todo-container">
       <div class="todo-wrap">
-        <MyHeader/>
-        <MyList/>
+        <MyHeader :addTodo="addTodo"/>
+        <MyList :todos="todos"/>
         <MyFooter/>
       </div>
     </div>
@@ -19,7 +19,23 @@
 
 export default {
   name: 'App',
-  components:{MyHeader,MyList,MyFooter}
+  components:{MyHeader,MyList,MyFooter},
+   data() {
+    return {
+      todos:[
+        {id:'001', title:'堡垒之夜', done:true},
+        {id:'002', title:'英雄联盟', done:false},
+        {id:'003', title:'星际争霸2', done:true},
+      ]
+    }
+  },
+  methods: {
+    addTodo(todoobj){
+      //添加进数组，通过传递函数，让子主见向夫组件提交数据与另一个子组件通信
+      this.todos.unshift(todoobj)
+      
+    }
+  },
 }
 </script>
 

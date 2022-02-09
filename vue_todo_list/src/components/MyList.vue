@@ -8,15 +8,8 @@ import MyItem from "./MyItem";
 export default {
   name: "MyList",
   components:{MyItem},
-  data() {
-    return {
-      todos:[
-        {id:'001', title:'堡垒之夜', done:true},
-        {id:'002', title:'英雄联盟', done:false},
-        {id:'003', title:'星际争霸2', done:true},
-      ]
-    }
-  },
+  props:['todos']
+ 
 };
 </script>
 <style lang="css" scoped>
