@@ -4,7 +4,8 @@
     <div class="todo-container">
       <div class="todo-wrap">
         <MyHeader :addTodo="addTodo"/>
-        <MyList :todos="todos"/>
+        <!-- 下面通过传函数方式实现子组件向父组件通信 -->
+        <MyList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"/>
         <MyFooter/>
       </div>
     </div>
@@ -30,12 +31,20 @@ export default {
     }
   },
   methods: {
-    addTodo(todoobj){
+    addTodo(todoobj){//添加一个todo
       //添加进数组，通过传递函数，让子主见向夫组件提交数据与另一个子组件通信
       this.todos.unshift(todoobj)
       
+    },
+    checkTodo(id){//勾选是否完成
+      this.todos.forEach((todo) => {
+        if(todo.id === id) todo.done = !todo.done
+      });
+    },
+    deleteTodo(id){//接受子组件id,删除一个todo
+      this.todos= this.todos.filter( todo => todo.id !== id)
     }
-  },
+  }
 }
 </script>
 
