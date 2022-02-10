@@ -6,7 +6,7 @@
         <MyHeader :addTodo="addTodo"/>
         <!-- 下面通过传函数方式实现子组件向父组件通信 -->
         <MyList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"/>
-        <MyFooter/>
+        <MyFooter :todos="todos"/>
       </div>
     </div>
   </div>
