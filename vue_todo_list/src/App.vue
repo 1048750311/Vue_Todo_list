@@ -23,11 +23,8 @@ export default {
   components:{MyHeader,MyList,MyFooter},
    data() {
     return {
-      todos:[
-        {id:'001', title:'堡垒之夜', done:true},
-        {id:'002', title:'英雄联盟', done:false},
-        {id:'003', title:'星际争霸2', done:true},
-      ]
+      todos:JSON.parse(localStorage.getItem('todos')) || []
+      
     }
   },
   methods: {
@@ -55,6 +52,16 @@ export default {
         return !todo.done
       })
     }
+  },
+  watch:{
+    todos:{
+      deep:true,
+      handler(value){
+      localStorage.setItem('todos',JSON.stringify(value))
+    }
+    }
+
+
   }
 }
 </script>
