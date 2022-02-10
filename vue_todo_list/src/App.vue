@@ -6,7 +6,7 @@
         <MyHeader :addTodo="addTodo"/>
         <!-- 下面通过传函数方式实现子组件向父组件通信 -->
         <MyList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"/>
-        <MyFooter :todos="todos"/>
+        <MyFooter :todos="todos" :checkAllTodo="checkAllTodo" :clearAllTodo="clearAllTodo"/>
       </div>
     </div>
   </div>
@@ -41,8 +41,19 @@ export default {
         if(todo.id === id) todo.done = !todo.done
       });
     },
-    deleteTodo(id){//接受子组件id,删除一个todo
+    deleteTodo(id){//删除一个todo,接收子组件id,
       this.todos= this.todos.filter( todo => todo.id !== id)
+    },
+    checkAllTodo(done){
+      this.todos.forEach((todo)=>{
+        todo.done = done
+      })
+    },
+    // 清除所有完成todo
+    clearAllTodo(){
+      this.todos =  this.todos.filter((todo)=> {
+        return !todo.done
+      })
     }
   }
 }
