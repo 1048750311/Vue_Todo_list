@@ -19,13 +19,12 @@ export default {
         //将用户的输入包装成一个todo对象
         const todoobj = {id:nanoid(), title:this.title, done:false}
         //通知App主见去添加一个todo
-        this.addTodo(todoobj)
+        this.$emit('addTodo', todoobj)
         this.title=''
         
         
     }
-  },
-  props:['addTodo'],
+  }
 };
 </script>
 <style lang="css" scoped>

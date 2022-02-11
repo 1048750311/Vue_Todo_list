@@ -18,7 +18,8 @@ export default {
             return this.doneTotal === this.total && this.total > 0
         },
         set(value){
-            this.checkAllTodo(value)
+            // this.checkAllTodo(value)
+            this.$emit('checkAllTodo', value)
         }
 
       },
@@ -45,13 +46,14 @@ export default {
       }
     },
     name:'MyFooter',
-    props:['todos','checkAllTodo','clearAllTodo'],
+    props:['todos'],
     methods: {
       // checkAll(e){
       //   this.checkAllTodo(e.target.checked)
       // }
       clearAll(){
-        this.clearAllTodo()
+        // this.clearAllTodo()
+        this.$emit('clearAllTodo')
       }
     },
 }
