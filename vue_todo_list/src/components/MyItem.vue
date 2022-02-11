@@ -8,17 +8,19 @@
     </li>
 </template>
 <script>
+import pubsub from 'pubsub-js'
 export default {
   name: "MyItem",
   //声明接受对象
-  props:['todo','checkTodo','deleteTodo'],
+  props:['todo'],
   methods: {
       handleCheck(id){
-          this.checkTodo(id)
+          this.$bus.$emit('checkTodo',id)
       },
       handleDelete(id){//给父组件函数传id,让父函数删除id对应的数组
           if(confirm('确定删除吗')){
-            this.deleteTodo(id)
+            //  this.$bus.$emit('deleteTodo',id) //总线方法
+            pubsub.publish('deleteTodo',id)   //pubsub发布消息方法
             
           } 
       }
