@@ -1,23 +1,24 @@
 <template>
     <li>
-        <label>
-        <input type="checkbox" :checked="todo.done" @change="handleCheck(todo.id)"/>
-        <span v-show="!todo.isEdit">{{todo.title}}</span>
-        <input 
-        type="text" 
-        v-show="todo.isEdit" 
-        :value="todo.title" 
-        @blur="handleBlur(todo,$event)"
-        ref="inputTitle"
-        >
-        </label>
-        <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
-        <button 
-        class="btn btn-edit" 
-        @click="handleEdit(todo)"
-        v-show="!todo.isEdit"
-        >编辑</button>
+      <label>
+      <input type="checkbox" :checked="todo.done" @change="handleCheck(todo.id)"/>
+      <span v-show="!todo.isEdit">{{todo.title}}</span>
+      <input 
+      type="text" 
+      v-show="todo.isEdit" 
+      :value="todo.title" 
+      @blur="handleBlur(todo,$event)"
+      ref="inputTitle"
+      >
+      </label>
+      <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
+      <button 
+      class="btn btn-edit" 
+      @click="handleEdit(todo)"
+      v-show="!todo.isEdit"
+      >编辑</button>
     </li>
+
 </template>
 <script>
 // import pubsub from 'pubsub-js' //pubsub方法导入
@@ -45,14 +46,14 @@ export default {
         this.$set(todo, "isEdit", true);
       }
       //生命周期updated之后执行
-      this.$nextTick(function(){
-        this.$refs.inputTitle.focus()
-      })
+      this.$nextTick(function() {
+        this.$refs.inputTitle.focus();
+      });
     },
-    handleBlur(todo,e) {
+    handleBlur(todo, e) {
       todo.isEdit = false;
-      if(!e.target.value.trim()) return alert('输入不能为空')
-      this.$bus.$emit("updateTodo", todo.id,e.target.value)
+      if (!e.target.value.trim()) return alert("输入不能为空");
+      this.$bus.$emit("updateTodo", todo.id, e.target.value);
     }
   }
 };
@@ -98,4 +99,6 @@ li:hover {
 li:hover button {
   display: block;
 }
+
+
 </style>
